@@ -1,6 +1,8 @@
 // Deoendencies
 const express = require('express');
 const mongoose = require('mongoose');
+const booksRouter = require('./controller/books');
+const methodOverride = require('method-override');
 
 // Initalize
 const app = express();
@@ -21,13 +23,31 @@ db.on('error', (err) =>{
     console.log('MongoDB Error:' + err.message);
 })
 
-
 // mount middleware
+app.use(express.urlencoded({extended: false}));
+app.use(methodOverride('_method'))
 
-// mount route
-
-
+// Home Page
+app.get('/', (req,res) => res.redirect('/books'));
+// Mout router/controller
+app.use('/books',booksRouter);
 // listen
 app.listen(PORT, () =>{
     console.log('Port:' , PORT)
-})
+});
+
+/* 
+
+    The Entire Edit and Update Process
+
+    0) Provide a button for the user to click on to edit a book
+        0.1) Use the id of the book to find the book document in database using findById.
+    1) Navigate the user to an edit page with the edit form with book details
+    2) User completes the edit form using POST method with the _method=PUT query param and submit
+    3) Use the form data to update the book
+        3.1) Find the book document in the database again, and use findByIdAndUpdate
+        to update the book
+    4) Redirect the user back to the show page
+
+
+*/

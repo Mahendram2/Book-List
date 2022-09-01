@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Details</title>
+</head>
+<body>
+    <h1><%=book.title%></h1>
+    <p><%=book.author%></p>
+    <% if(book.completed) { %>
+        <p>You have finished reading this book</p>
+    <% }else { %>
+        <p>You have <strong>NOT</strong> finished reading this book</p>
+    <% } %>
+
+        <form action="/books/<%=book._id%>?_method=DELETE" method="POST">
+            <input type="submit" value="Delete This Book">
+        </form><br>
+
+        <a href="/books/<%=book._id%>/edit">Edit This Book</a>
+
+    <a href="/books">Back to Reading List</a><br>
+    <a href="/books/new">Add to my list</a>
+</body>
+</html>
