@@ -9,7 +9,7 @@ const Book = require('../models/book');
 
 
 // Seed Route
-router.get('/books/seed',(req,res)=>{
+router.get('/seed',(req,res)=>{
     const data = require('../data.json') 
     Book.deleteMany({}, (err,result) =>{
         Book.insertMany(data, (err,result) =>{
@@ -25,7 +25,7 @@ router.get('/books/seed',(req,res)=>{
 // Index
 router.get('/', (req,res)=>{
     Book.find({}, (err,books) =>{
-        res.render('index.ejs', {
+        res.render('books/index.ejs', {
             'books': books
         })
     })
@@ -34,7 +34,7 @@ router.get('/', (req,res)=>{
 
 // New
 router.get('/new', (req,res) =>{
-    res.render('new.ejs')
+    res.render('books/new.ejs')
 })
 
 // Delete
@@ -70,16 +70,17 @@ router.post('/', (req,res) => {
 // Edit
 router.get('/:id/edit', (req,res)=>{
     Book.findById(req.params.id, (err, foundBook) =>{
-        res.render('edit.ejs', {book: foundBook})
+        res.render('books/edit.ejs', {book: foundBook})
     });
     
 })
-
+// Main Routes 
+// Home Page - (Homepage also called index page)
 
 // Show
 router.get('/:id', (req, res) => {
     Book.findById(req.params.id, (err, foundBook) => {
-        res.render('show.ejs', { book: foundBook })
+        res.render('books/show.ejs', { book: foundBook })
     });
 });
 

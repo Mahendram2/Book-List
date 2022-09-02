@@ -4,19 +4,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book List</title>
+    <title>Welcome to Booklist </title>
 </head>
 <body>
-    <h1>My Reading List</h1>
-    <ul>
-        <% books.forEach(b => { %>
-            <li>
-                <a href="/books/<%= b._id %>">
-                    <%= b.title %>
-                </a>
-            </li>
-        <% }); %>
-    </ul>
-    <a href="/books/new">Add to my list</a>
+    <header>
+        <h1>Booklist</h1>
+        <nav>
+            <ul>
+                <li>
+                    <a href="/books">Go to Booklist</a>
+                </li>
+                <li>
+                    <a href="/login">Login</a>
+                </li>
+                <li>
+                    <a href="/logout">Log Out</a>
+                </li>
+                <li>
+                    <a href="/signup">SignUp</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Welcome to Booklist App!</h2>
+    </main>
+    <footer>
+        <p>CopyRight &copy; All Right Reserved Booklist <%= new Date().getFullYear() %></p>
+    </footer>
 </body>
 </html>

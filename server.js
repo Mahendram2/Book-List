@@ -2,7 +2,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const booksRouter = require('./controller/books');
+const userRouter = require('./controller/users');
 const methodOverride = require('method-override');
+const expressSession = reequire('express-session');
 
 // Initalize
 const app = express();
@@ -27,10 +29,13 @@ db.on('error', (err) =>{
 app.use(express.urlencoded({extended: false}));
 app.use(methodOverride('_method'))
 
-// Home Page
-app.get('/', (req,res) => res.redirect('/books'));
+app.get('/', (req, res) => {
+    res.render('index.ejs');
+});
+
 // Mout router/controller
 app.use('/books',booksRouter);
+app.use(userRouter);
 // listen
 app.listen(PORT, () =>{
     console.log('Port:' , PORT)
